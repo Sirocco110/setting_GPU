@@ -1,0 +1,21 @@
+Udemyから各種設定を確認、インストール
+（CUDA, NVIDIA container toolkit, ）
+
+https://www.tensorflow.org/install/source?hl=ja#linux
+↑tensorflow, python, cuDNN, CUDAのバージョン確認
+＝あってないとGPUが使えない
+
+https://hub.docker.com/r/nvidia/cuda
+↑docker image GPU用
+＝上のバージョンを考える
+
+Dockerfile作成
+
+docker build .
+
+docker run --gpus all -p 8888:8888 -v ~/Private/---:work --name 名前 image-ID
+
+cv2のエラー
+sudo apt-get update
+apt-get install -y libglib2.0-0 libsm6 libxrender1 libxext6
+↑dockerfileに書ける？
