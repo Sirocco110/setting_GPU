@@ -3,7 +3,8 @@ RUN apt-get update && apt-get install -y \
 	sudo \
 	wget \
 	vim \
-	libsm6 libxext6 libxrender-dev
+	libsm6 libxext6 libxrender-dev \
+	libgl1-mesa-dev
 
 WORKDIR /opt
 RUN wget https://repo.continuum.io/archive/Anaconda3-2020.11-Linux-x86_64.sh && \
@@ -18,9 +19,11 @@ RUN pip install --upgrade pip && pip install \
 	opencv-python \
 	keras==2.3
 
-# RUN apt-get install -y libgl1-mesa-dev
+RUN  useradd --shell /bin/bash -u 1000 -o -c "" -m myuser
+RUN mkdir -p /shared/tmp && chown myuser. /shared/ -R
+USER myuser
+
 
 WORKDIR /
 
 CMD ["jupyter", "lab", "--ip=0.0.0.0", "--allow-root", "--LabApp.token=''"]
-

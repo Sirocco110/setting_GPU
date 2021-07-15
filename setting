@@ -19,3 +19,8 @@ cv2のエラー
 sudo apt-get update
 apt-get install -y libglib2.0-0 libsm6 libxrender1 libxext6
 ↑dockerfileに書ける？
+
+user 設定
+RUN  useradd --shell /bin/bash -u (ここはlocalのidといっしょの数字) -o -c "" -m myuser
+RUN mkdir -p /shared/tmp && chown myuser. /shared/ -R
+USER myuser
